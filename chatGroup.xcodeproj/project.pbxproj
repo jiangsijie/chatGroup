@@ -20,6 +20,9 @@
 		F6F0A4092428B58E00E1DA1D /* chatGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A4082428B58E00E1DA1D /* chatGroupTests.m */; };
 		F6F0A4142428B58E00E1DA1D /* chatGroupUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A4132428B58E00E1DA1D /* chatGroupUITests.m */; };
 		F6F0A4332428F0FE00E1DA1D /* LoginOrSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A4322428F0FE00E1DA1D /* LoginOrSignupViewController.m */; };
+		F6F0A43A2429F6DA00E1DA1D /* UsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A4392429F6DA00E1DA1D /* UsersListViewController.m */; };
+		F6F0A43E242A021E00E1DA1D /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A43D242A021E00E1DA1D /* UserTableViewCell.m */; };
+		F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A441242A101900E1DA1D /* MessageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,12 @@
 		F6F0A4152428B58E00E1DA1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6F0A4312428F0FE00E1DA1D /* LoginOrSignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginOrSignupViewController.h; sourceTree = "<group>"; };
 		F6F0A4322428F0FE00E1DA1D /* LoginOrSignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginOrSignupViewController.m; sourceTree = "<group>"; };
+		F6F0A4382429F6DA00E1DA1D /* UsersListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsersListViewController.h; sourceTree = "<group>"; };
+		F6F0A4392429F6DA00E1DA1D /* UsersListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsersListViewController.m; sourceTree = "<group>"; };
+		F6F0A43C242A021E00E1DA1D /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		F6F0A43D242A021E00E1DA1D /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		F6F0A440242A101900E1DA1D /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
+		F6F0A441242A101900E1DA1D /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +193,8 @@
 		F6F0A4212428EE8200E1DA1D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F6F0A43F242A100100E1DA1D /* Message */,
+				F6F0A4342429F66F00E1DA1D /* UsersList */,
 				F6F0A42D2428F04700E1DA1D /* LoginOrSign */,
 			);
 			path = Classes;
@@ -196,6 +207,34 @@
 				F6F0A4322428F0FE00E1DA1D /* LoginOrSignupViewController.m */,
 			);
 			path = LoginOrSign;
+			sourceTree = "<group>";
+		};
+		F6F0A4342429F66F00E1DA1D /* UsersList */ = {
+			isa = PBXGroup;
+			children = (
+				F6F0A43B242A01EE00E1DA1D /* Classes */,
+				F6F0A4382429F6DA00E1DA1D /* UsersListViewController.h */,
+				F6F0A4392429F6DA00E1DA1D /* UsersListViewController.m */,
+			);
+			path = UsersList;
+			sourceTree = "<group>";
+		};
+		F6F0A43B242A01EE00E1DA1D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F6F0A43C242A021E00E1DA1D /* UserTableViewCell.h */,
+				F6F0A43D242A021E00E1DA1D /* UserTableViewCell.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F6F0A43F242A100100E1DA1D /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				F6F0A440242A101900E1DA1D /* MessageViewController.h */,
+				F6F0A441242A101900E1DA1D /* MessageViewController.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,10 +475,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6F0A43E242A021E00E1DA1D /* UserTableViewCell.m in Sources */,
 				F6F0A3F42428B58B00E1DA1D /* ViewController.m in Sources */,
 				F6F0A4332428F0FE00E1DA1D /* LoginOrSignupViewController.m in Sources */,
 				F6F0A3EE2428B58B00E1DA1D /* AppDelegate.m in Sources */,
+				F6F0A43A2429F6DA00E1DA1D /* UsersListViewController.m in Sources */,
 				F6F0A3FF2428B58E00E1DA1D /* main.m in Sources */,
+				F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */,
 				F6F0A3F12428B58B00E1DA1D /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

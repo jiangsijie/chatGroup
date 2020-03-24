@@ -108,11 +108,104 @@
                     <connections>
                         <outlet property="password" destination="a0K-VU-1Si" id="PSG-PB-2WB"/>
                         <outlet property="userName" destination="YzC-e2-6rk" id="clM-mY-sXq"/>
+                        <segue destination="hu5-zB-REo" kind="show" identifier="fromLoginToUsersList" id="zPK-X9-LLD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="76.339285714285708"/>
+            <point key="canvasLocation" x="999" y="380"/>
+        </scene>
+        <!--通讯录-->
+        <scene sceneID="k2B-W8-cS8">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Y4-tU-ezE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="mzk-Bm-3Es" customClass="UsersListViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RyD-R4-bSh" customClass="UserTableViewCell">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tk7-7r-Jp1">
+                                <rect key="frame" x="0.0" y="57" width="414" height="756"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="45" id="liY-nq-dNh" customClass="UserTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="liY-nq-dNh" id="EjQ-fg-Y3E">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xve-Hu-a1l">
+                                                    <rect key="frame" x="20" y="13" width="76" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="8Zo-xL-rVr"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="raO-Li-EuA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xve-Hu-a1l" firstAttribute="top" secondItem="EjQ-fg-Y3E" secondAttribute="top" constant="13" id="03j-n4-lEE"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xve-Hu-a1l" secondAttribute="trailing" constant="20" symbolic="YES" id="aB0-Wq-fC3"/>
+                                                <constraint firstItem="xve-Hu-a1l" firstAttribute="leading" secondItem="EjQ-fg-Y3E" secondAttribute="leading" constant="20" id="h0P-VF-axU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="usernameLabel" destination="xve-Hu-a1l" id="7Li-vT-MRO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="A4Q-gK-gPN"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="通讯录" id="PjN-lq-fyW"/>
+                    <navigationItem key="navigationItem" id="GNn-wj-0FC"/>
+                    <connections>
+                        <outlet property="userTableView" destination="Tk7-7r-Jp1" id="K0E-Po-TSi"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2800" y="418"/>
+        </scene>
+        <!--消息-->
+        <scene sceneID="brs-0V-9iR">
+            <objects>
+                <viewController id="6lx-Lc-jdh" customClass="MessageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gQ6-94-KU0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="fRp-Yw-A6U"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="消息" id="g9C-dL-Nhw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWg-Vj-8zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2786" y="-229"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="xNV-VH-LCH">
+            <objects>
+                <tabBarController id="hu5-zB-REo" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="43X-0y-X6r"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C98-mM-aA3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="6lx-Lc-jdh" kind="relationship" relationship="viewControllers" id="h27-Px-w4j"/>
+                        <segue destination="mzk-Bm-3Es" kind="relationship" relationship="viewControllers" id="StU-eG-gvm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KDu-79-caP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1923" y="-56"/>
         </scene>
     </scenes>
 </document>

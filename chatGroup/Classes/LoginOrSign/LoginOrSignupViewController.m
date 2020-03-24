@@ -30,6 +30,8 @@
                   NSLog(@"登录失败 %@", error);
               } else {
                   NSLog(@"登录成功");
+                  [self performSegueWithIdentifier:@"fromLoginToUsersList" sender:nil];
+
                   //[self performSegueWithIdentifier:@"fromLoginToProducts" sender:nil];
               }
           }];

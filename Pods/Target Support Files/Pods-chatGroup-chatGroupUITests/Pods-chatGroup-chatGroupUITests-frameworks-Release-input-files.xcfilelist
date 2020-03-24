@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-chatGroup-chatGroupUITests/Pods-chatGroup-chatGroupUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework
+${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework
+${BUILT_PRODUCTS_DIR}/AVOSCloudLiveQuery/AVOSCloudLiveQuery.framework

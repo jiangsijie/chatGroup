@@ -23,6 +23,7 @@
 		F6F0A43A2429F6DA00E1DA1D /* UsersListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A4392429F6DA00E1DA1D /* UsersListViewController.m */; };
 		F6F0A43E242A021E00E1DA1D /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A43D242A021E00E1DA1D /* UserTableViewCell.m */; };
 		F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A441242A101900E1DA1D /* MessageViewController.m */; };
+		F6F0A448242B2FEA00E1DA1D /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A447242B2FEA00E1DA1D /* ConversationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		F6F0A43D242A021E00E1DA1D /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 		F6F0A440242A101900E1DA1D /* MessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageViewController.h; sourceTree = "<group>"; };
 		F6F0A441242A101900E1DA1D /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
+		F6F0A446242B2FEA00E1DA1D /* ConversationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationViewController.h; sourceTree = "<group>"; };
+		F6F0A447242B2FEA00E1DA1D /* ConversationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +196,7 @@
 		F6F0A4212428EE8200E1DA1D /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F6F0A445242B2FC400E1DA1D /* Conversation */,
 				F6F0A43F242A100100E1DA1D /* Message */,
 				F6F0A4342429F66F00E1DA1D /* UsersList */,
 				F6F0A42D2428F04700E1DA1D /* LoginOrSign */,
@@ -235,6 +239,15 @@
 				F6F0A441242A101900E1DA1D /* MessageViewController.m */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		F6F0A445242B2FC400E1DA1D /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				F6F0A446242B2FEA00E1DA1D /* ConversationViewController.h */,
+				F6F0A447242B2FEA00E1DA1D /* ConversationViewController.m */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -475,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6F0A448242B2FEA00E1DA1D /* ConversationViewController.m in Sources */,
 				F6F0A43E242A021E00E1DA1D /* UserTableViewCell.m in Sources */,
 				F6F0A3F42428B58B00E1DA1D /* ViewController.m in Sources */,
 				F6F0A4332428F0FE00E1DA1D /* LoginOrSignupViewController.m in Sources */,

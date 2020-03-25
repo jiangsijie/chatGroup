@@ -8,11 +8,18 @@
 
 #import "UsersListViewController.h"
 #import "UserTableViewCell.h"
+#import "ConversationViewController.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import <AVOSCloudIM/AVOSCloudIM.h>
 
 @interface UsersListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
 @property (strong, nonatomic) NSArray *usersList;
+@property (strong, nonatomic) AVIMClient *client;
+@property (strong, nonatomic) AVUser *currentUser;
+@property (strong, nonatomic) AVUser *talkToUser;
+@property (assign, nonatomic) BOOL loginFailed;
+
 @end
 
 @implementation UsersListViewController
@@ -31,17 +38,21 @@
         self.usersList = users;
         [self refreshData];
     }];
+    
+    self.currentUser = [AVUser currentUser];
+    self.client = [[AVIMClient alloc] initWithUser:self.currentUser];
+    [AVUser logInWithUsernameInBackground:self.currentUser.username password:self.currentUser.password block:^(AVUser * _Nullable user, NSError * _Nullable error) {
+        if(!user) {
+            self.loginFailed = YES;
+        }
+    }];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    ConversationViewController *page = [segue destinationViewController];
+    page.talkToUser = self.talkToUser;
+    
 }
-*/
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
@@ -54,6 +65,14 @@
     return self.usersList.count;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.loginFailed) {
+        return;
+    }
+    
+    self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"fromUsersLstToConversationPage" sender:self];
+}
 /**
  *  刷新数据源
  */

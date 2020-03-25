@@ -167,10 +167,27 @@
                     <navigationItem key="navigationItem" id="GNn-wj-0FC"/>
                     <connections>
                         <outlet property="userTableView" destination="Tk7-7r-Jp1" id="K0E-Po-TSi"/>
+                        <segue destination="VPX-Ha-nQs" kind="show" identifier="fromUsersLstToConversationPage" id="Fox-oj-ehT"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="2800" y="418"/>
+        </scene>
+        <!--Conversation View Controller-->
+        <scene sceneID="lyF-fw-6iO">
+            <objects>
+                <viewController id="VPX-Ha-nQs" customClass="ConversationViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qEU-aZ-lEC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="9uT-5j-iMh"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uZl-N4-2m7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="01B-D7-yRp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3630" y="418"/>
         </scene>
         <!--消息-->
         <scene sceneID="brs-0V-9iR">

@@ -124,4 +124,19 @@
 //    <#code#>
 //}
 
+
+- (IBAction)doSomething:(id)sender {
+
+}
+//    if segue.identifier == "backMainForP1"{
+//        //获取返回的控制器
+//        let backVC = segue.source as! P1ViewController
+//        mainLabel.text = backVC.backSting//获取返回值
+//    }
+//    if segue.identifier == "backMainForP2"{
+//        //获取返回的控制器
+//        let backVC = segue.source as! P2ViewController
+//        mainLabel.text = backVC.backSting//获取返回值
+//    }
+
 @end

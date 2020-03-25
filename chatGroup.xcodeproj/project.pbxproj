@@ -24,6 +24,7 @@
 		F6F0A43E242A021E00E1DA1D /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A43D242A021E00E1DA1D /* UserTableViewCell.m */; };
 		F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A441242A101900E1DA1D /* MessageViewController.m */; };
 		F6F0A448242B2FEA00E1DA1D /* ConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A447242B2FEA00E1DA1D /* ConversationViewController.m */; };
+		F6F0A451242B4B7400E1DA1D /* ConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F6F0A450242B4B7400E1DA1D /* ConversationTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,8 @@
 		F6F0A441242A101900E1DA1D /* MessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		F6F0A446242B2FEA00E1DA1D /* ConversationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationViewController.h; sourceTree = "<group>"; };
 		F6F0A447242B2FEA00E1DA1D /* ConversationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationViewController.m; sourceTree = "<group>"; };
+		F6F0A44F242B4B7400E1DA1D /* ConversationTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConversationTableViewCell.h; sourceTree = "<group>"; };
+		F6F0A450242B4B7400E1DA1D /* ConversationTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConversationTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +249,8 @@
 			children = (
 				F6F0A446242B2FEA00E1DA1D /* ConversationViewController.h */,
 				F6F0A447242B2FEA00E1DA1D /* ConversationViewController.m */,
+				F6F0A44F242B4B7400E1DA1D /* ConversationTableViewCell.h */,
+				F6F0A450242B4B7400E1DA1D /* ConversationTableViewCell.m */,
 			);
 			path = Conversation;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				F6F0A4332428F0FE00E1DA1D /* LoginOrSignupViewController.m in Sources */,
 				F6F0A3EE2428B58B00E1DA1D /* AppDelegate.m in Sources */,
 				F6F0A43A2429F6DA00E1DA1D /* UsersListViewController.m in Sources */,
+				F6F0A451242B4B7400E1DA1D /* ConversationTableViewCell.m in Sources */,
 				F6F0A3FF2428B58E00E1DA1D /* main.m in Sources */,
 				F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */,
 				F6F0A3F12428B58B00E1DA1D /* SceneDelegate.m in Sources */,

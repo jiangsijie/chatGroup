@@ -30,7 +30,7 @@
                   NSLog(@"登录失败 %@", error);
               } else {
                   NSLog(@"登录成功");
-                  [self performSegueWithIdentifier:@"fromLoginToUsersList" sender:self];
+                  [self performSegueWithIdentifier:@"goToMainPageSegue" sender:self];
               }
           }];
       }
@@ -45,7 +45,6 @@
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 NSLog(@"注册成功");
-                //[self performSegueWithIdentifier:@"fromSignUpToProducts" sender:nil];
             } else {
                 NSLog(@"注册失败 %@", error);
             }

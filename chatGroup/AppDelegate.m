@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginOrSignupViewController.h"
+#import "UsersListViewController.h"
 
 #define APP_ID @"dWNLhmf8CVlqChrGepvqp5Cw-gzGzoHsz"
 #define APP_KEY @"8AnI2TacgxCFohhMwv0AGnOw"
@@ -25,12 +25,6 @@
                       clientKey:APP_KEY
                 serverURLString:SERVER_URL];
     [AVOSCloud setAllLogsEnabled:YES];
-    
-    LoginOrSignupViewController *viewController = [[LoginOrSignupViewController alloc] init];
-    
-//    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    self.window.rootViewController = [[LoginOrSignupViewController alloc]init];
-//    [self.window makeKeyAndVisible];
     
     return YES;
 }

@@ -11,8 +11,7 @@
 @interface ConversationViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) AVIMClient *client;
 @property (strong, nonatomic) AVUser *currentUser;
-@property (weak, nonatomic) IBOutlet UITableView *ConversationListTableView;
-
+@property (weak, nonatomic) IBOutlet UITableView *conversationTableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) NSMutableArray* conversationList;
 @end
@@ -25,21 +24,22 @@
     self.conversationList = [NSMutableArray array];
     self.currentUser = [AVUser currentUser];
     self.client = [[AVIMClient alloc] initWithUser:self.currentUser];
+    
+    self.tabBarController.tabBar.hidden = YES;
+    self.navigationItem.title = self.talkToUser.username;
+    self.conversationTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.conversationTableView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ConversationCell"];
-    cell.wordsLabel.text = [self.conversationList objectAtIndex:indexPath.row];
+    ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conversationCell"];
+    cell.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    cell.textLabel.text = [self.conversationList objectAtIndex:indexPath.row];
+//    cell.textLabel.backgroundColor = [UIColor whiteColor];
+//    cell.textLabel.layer.cornerRadius = 8;
+//    cell.textLabel.layer.masksToBounds = YES;
+//    cell.textLabel.layer.borderWidth = 1;
+//    cell.textLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     return cell;
 }
 
@@ -73,7 +73,7 @@
  *  刷新数据源
  */
 - (void)refreshData {
-    [self.ConversationListTableView reloadData];
+    [self.conversationTableView reloadData];
 }
 - (IBAction)backBtnOnClick:(id)sender {
     

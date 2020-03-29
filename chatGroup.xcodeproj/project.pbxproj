@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82928651242B025600E91F21 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82928650242B025600E91F21 /* ChatViewController.m */; };
+		82A34698242EE54200E648E3 /* MessageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A34697242EE54200E648E3 /* MessageFrame.m */; };
+		82A3469B242EE62500E648E3 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A3469A242EE62500E648E3 /* Message.m */; };
+		82A3469E242EE68E00E648E3 /* MessageType.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A3469D242EE68E00E648E3 /* MessageType.m */; };
+		82A346A3242EEC3C00E648E3 /* ActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346A2242EEC3C00E648E3 /* ActivityIndicatorView.m */; };
+		82A346A6242EEE1D00E648E3 /* FileHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346A5242EEE1D00E648E3 /* FileHelper.m */; };
+		82A346A8242EEF3000E648E3 /* ChatGroup.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 82A346A7242EEF2F00E648E3 /* ChatGroup.bundle */; };
+		82A346AB242EF27B00E648E3 /* MessageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346AA242EF27B00E648E3 /* MessageContentView.m */; };
+		82A346AE242EF39E00E648E3 /* MessageInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346AD242EF39E00E648E3 /* MessageInputView.m */; };
+		82A346B1242EF9C500E648E3 /* ChatMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346B0242EF9C500E648E3 /* ChatMessageTableViewCell.m */; };
+		82A346B4242F079400E648E3 /* MessageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346B3242F079400E648E3 /* MessageHelper.m */; };
+		82A346B7242F432F00E648E3 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346B6242F432F00E648E3 /* MessageTextView.m */; };
+		82A346BB24306F5300E648E3 /* createChatGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346BA24306F5300E648E3 /* createChatGroupViewController.m */; };
 		DCB0DE8E3CADD85C2FDC5457 /* Pods_chatGroup_chatGroupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819D55DC311390AF513B02B3 /* Pods_chatGroup_chatGroupUITests.framework */; };
 		E10142C679E6BC7602721CF9 /* Pods_chatGroupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F2B30D1521231CEABFBADB /* Pods_chatGroupTests.framework */; };
 		E96A91D758E82F2B04FC2CA2 /* Pods_chatGroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366C9045298D399E4FCE9829 /* Pods_chatGroup.framework */; };
@@ -50,6 +63,32 @@
 		366C9045298D399E4FCE9829 /* Pods_chatGroup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chatGroup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42F2B30D1521231CEABFBADB /* Pods_chatGroupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chatGroupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		819D55DC311390AF513B02B3 /* Pods_chatGroup_chatGroupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_chatGroup_chatGroupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8292864F242B025600E91F21 /* ChatViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		82928650242B025600E91F21 /* ChatViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		82A34696242EE54200E648E3 /* MessageFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageFrame.h; sourceTree = "<group>"; };
+		82A34697242EE54200E648E3 /* MessageFrame.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageFrame.m; sourceTree = "<group>"; };
+		82A34699242EE62500E648E3 /* Message.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		82A3469A242EE62500E648E3 /* Message.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
+		82A3469C242EE68E00E648E3 /* MessageType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageType.h; sourceTree = "<group>"; };
+		82A3469D242EE68E00E648E3 /* MessageType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageType.m; sourceTree = "<group>"; };
+		82A3469F242EE8EA00E648E3 /* MessageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageHeader.h; sourceTree = "<group>"; };
+		82A346A1242EEC3C00E648E3 /* ActivityIndicatorView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorView.h; sourceTree = "<group>"; };
+		82A346A2242EEC3C00E648E3 /* ActivityIndicatorView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorView.m; sourceTree = "<group>"; };
+		82A346A4242EEE1D00E648E3 /* FileHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileHelper.h; sourceTree = "<group>"; };
+		82A346A5242EEE1D00E648E3 /* FileHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileHelper.m; sourceTree = "<group>"; };
+		82A346A7242EEF2F00E648E3 /* ChatGroup.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChatGroup.bundle; sourceTree = "<group>"; };
+		82A346A9242EF27B00E648E3 /* MessageContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageContentView.h; sourceTree = "<group>"; };
+		82A346AA242EF27B00E648E3 /* MessageContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageContentView.m; sourceTree = "<group>"; };
+		82A346AC242EF39E00E648E3 /* MessageInputView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageInputView.h; sourceTree = "<group>"; };
+		82A346AD242EF39E00E648E3 /* MessageInputView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageInputView.m; sourceTree = "<group>"; };
+		82A346AF242EF9C500E648E3 /* ChatMessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatMessageTableViewCell.h; sourceTree = "<group>"; };
+		82A346B0242EF9C500E648E3 /* ChatMessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChatMessageTableViewCell.m; sourceTree = "<group>"; };
+		82A346B2242F079400E648E3 /* MessageHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageHelper.h; sourceTree = "<group>"; };
+		82A346B3242F079400E648E3 /* MessageHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageHelper.m; sourceTree = "<group>"; };
+		82A346B5242F432F00E648E3 /* MessageTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageTextView.h; sourceTree = "<group>"; };
+		82A346B6242F432F00E648E3 /* MessageTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageTextView.m; sourceTree = "<group>"; };
+		82A346B924306F5300E648E3 /* createChatGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = createChatGroupViewController.h; sourceTree = "<group>"; };
+		82A346BA24306F5300E648E3 /* createChatGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = createChatGroupViewController.m; sourceTree = "<group>"; };
 		A01B3905DCAA19665BB2F395 /* Pods-chatGroup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatGroup.release.xcconfig"; path = "Target Support Files/Pods-chatGroup/Pods-chatGroup.release.xcconfig"; sourceTree = "<group>"; };
 		AE74613AE38263B989B1A7F1 /* Pods-chatGroup-chatGroupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatGroup-chatGroupUITests.debug.xcconfig"; path = "Target Support Files/Pods-chatGroup-chatGroupUITests/Pods-chatGroup-chatGroupUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D22C2398E7BB4394000B33BC /* Pods-chatGroup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatGroup.debug.xcconfig"; path = "Target Support Files/Pods-chatGroup/Pods-chatGroup.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,6 +166,78 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8292864C242B017100E91F21 /* groupChat */ = {
+			isa = PBXGroup;
+			children = (
+				82A346B824306EBB00E648E3 /* controller */,
+				82A346A0242EEBD500E648E3 /* Views */,
+				82A34695242EE50A00E648E3 /* Helper */,
+				82A34694242EE4EA00E648E3 /* Models */,
+				82A3468A242DFD4E00E648E3 /* Cell */,
+				8292864F242B025600E91F21 /* ChatViewController.h */,
+				82928650242B025600E91F21 /* ChatViewController.m */,
+				82A3469F242EE8EA00E648E3 /* MessageHeader.h */,
+			);
+			name = groupChat;
+			sourceTree = "<group>";
+		};
+		82A3468A242DFD4E00E648E3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				82A346AF242EF9C500E648E3 /* ChatMessageTableViewCell.h */,
+				82A346B0242EF9C500E648E3 /* ChatMessageTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		82A34694242EE4EA00E648E3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				82A34696242EE54200E648E3 /* MessageFrame.h */,
+				82A34697242EE54200E648E3 /* MessageFrame.m */,
+				82A34699242EE62500E648E3 /* Message.h */,
+				82A3469A242EE62500E648E3 /* Message.m */,
+				82A3469C242EE68E00E648E3 /* MessageType.h */,
+				82A3469D242EE68E00E648E3 /* MessageType.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		82A34695242EE50A00E648E3 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				82A346A4242EEE1D00E648E3 /* FileHelper.h */,
+				82A346A5242EEE1D00E648E3 /* FileHelper.m */,
+				82A346B2242F079400E648E3 /* MessageHelper.h */,
+				82A346B3242F079400E648E3 /* MessageHelper.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		82A346A0242EEBD500E648E3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82A346A1242EEC3C00E648E3 /* ActivityIndicatorView.h */,
+				82A346A2242EEC3C00E648E3 /* ActivityIndicatorView.m */,
+				82A346A9242EF27B00E648E3 /* MessageContentView.h */,
+				82A346AA242EF27B00E648E3 /* MessageContentView.m */,
+				82A346AC242EF39E00E648E3 /* MessageInputView.h */,
+				82A346AD242EF39E00E648E3 /* MessageInputView.m */,
+				82A346B5242F432F00E648E3 /* MessageTextView.h */,
+				82A346B6242F432F00E648E3 /* MessageTextView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		82A346B824306EBB00E648E3 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				82A346B924306F5300E648E3 /* createChatGroupViewController.h */,
+				82A346BA24306F5300E648E3 /* createChatGroupViewController.m */,
+			);
+			name = controller;
+			sourceTree = "<group>";
+		};
 		B9D89C99F8DCBA8833B1E8DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +273,7 @@
 		F6F0A3EB2428B58B00E1DA1D /* chatGroup */ = {
 			isa = PBXGroup;
 			children = (
+				82A346A7242EEF2F00E648E3 /* ChatGroup.bundle */,
 				F6F0A4212428EE8200E1DA1D /* Classes */,
 				F6F0A3EC2428B58B00E1DA1D /* AppDelegate.h */,
 				F6F0A3ED2428B58B00E1DA1D /* AppDelegate.m */,
@@ -238,6 +350,7 @@
 		F6F0A43F242A100100E1DA1D /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				8292864C242B017100E91F21 /* groupChat */,
 				F6F0A440242A101900E1DA1D /* MessageViewController.h */,
 				F6F0A441242A101900E1DA1D /* MessageViewController.m */,
 			);
@@ -363,6 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82A346A8242EEF3000E648E3 /* ChatGroup.bundle in Resources */,
 				F6F0A3FC2428B58E00E1DA1D /* LaunchScreen.storyboard in Resources */,
 				F6F0A3F92428B58E00E1DA1D /* Assets.xcassets in Resources */,
 				F6F0A3F72428B58B00E1DA1D /* Main.storyboard in Resources */,
@@ -493,16 +607,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82A346BB24306F5300E648E3 /* createChatGroupViewController.m in Sources */,
 				F6F0A448242B2FEA00E1DA1D /* ConversationViewController.m in Sources */,
 				F6F0A43E242A021E00E1DA1D /* UserTableViewCell.m in Sources */,
+				82A346B1242EF9C500E648E3 /* ChatMessageTableViewCell.m in Sources */,
+				82A346AB242EF27B00E648E3 /* MessageContentView.m in Sources */,
 				F6F0A3F42428B58B00E1DA1D /* ViewController.m in Sources */,
+				82A346B7242F432F00E648E3 /* MessageTextView.m in Sources */,
+				82A3469B242EE62500E648E3 /* Message.m in Sources */,
 				F6F0A4332428F0FE00E1DA1D /* LoginOrSignupViewController.m in Sources */,
+				82A346B4242F079400E648E3 /* MessageHelper.m in Sources */,
+				82A346A6242EEE1D00E648E3 /* FileHelper.m in Sources */,
 				F6F0A3EE2428B58B00E1DA1D /* AppDelegate.m in Sources */,
+				82A346A3242EEC3C00E648E3 /* ActivityIndicatorView.m in Sources */,
 				F6F0A43A2429F6DA00E1DA1D /* UsersListViewController.m in Sources */,
 				F6F0A451242B4B7400E1DA1D /* ConversationTableViewCell.m in Sources */,
 				F6F0A3FF2428B58E00E1DA1D /* main.m in Sources */,
 				F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */,
 				F6F0A3F12428B58B00E1DA1D /* SceneDelegate.m in Sources */,
+				82A346AE242EF39E00E648E3 /* MessageInputView.m in Sources */,
+				82A3469E242EE68E00E648E3 /* MessageType.m in Sources */,
+				82A34698242EE54200E648E3 /* MessageFrame.m in Sources */,
+				82928651242B025600E91F21 /* ChatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

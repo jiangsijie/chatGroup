@@ -2,3 +2,6 @@ ${PODS_ROOT}/Target Support Files/Pods-chatGroup-chatGroupUITests/Pods-chatGroup
 ${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework
 ${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework
 ${BUILT_PRODUCTS_DIR}/AVOSCloudLiveQuery/AVOSCloudLiveQuery.framework
+${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework
+${BUILT_PRODUCTS_DIR}/SHEmotionKeyboard/SHEmotionKeyboard.framework
+${BUILT_PRODUCTS_DIR}/SHExtension/SHExtension.framework

@@ -12,23 +12,35 @@ PODS:
   - AVOSCloudLiveQuery (12.1.3):
     - AVOSCloud (= 12.1.3)
     - AVOSCloudIM (= 12.1.3)
+  - BEMCheckBox (1.4.1)
+  - SHEmotionKeyboard (1.1.0):
+    - SHExtension/UIView
+  - SHExtension/UIView (1.1.0)
 
 DEPENDENCIES:
   - AVOSCloud (~> 12.1.3)
   - AVOSCloudIM (~> 12.1.3)
   - AVOSCloudLiveQuery (~> 12.1.3)
+  - BEMCheckBox
+  - SHEmotionKeyboard
 
 SPEC REPOS:
   trunk:
     - AVOSCloud
     - AVOSCloudIM
     - AVOSCloudLiveQuery
+    - BEMCheckBox
+    - SHEmotionKeyboard
+    - SHExtension
 
 SPEC CHECKSUMS:
   AVOSCloud: e7fe301df4aee080e61b25aa190345fb9d1e0186
   AVOSCloudIM: 6b9cf8130ae035f363f06249c884ad4445dac67e
   AVOSCloudLiveQuery: 10bc64f06a8aa7a7fce0f7f28c8470e1864fa76a
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  SHEmotionKeyboard: f35fc8ed314145c24f4e8858181f4b932fefdf1a
+  SHExtension: 4954f7c07cf43efbc430004a2c253c0e20d1a81d
 
-PODFILE CHECKSUM: 9f6307fa5d4a085495fee01859e0124c5927bc90
+PODFILE CHECKSUM: b20e1fe6762bbaf10d65aff769a1641b80dc48ea
 
 COCOAPODS: 1.9.1

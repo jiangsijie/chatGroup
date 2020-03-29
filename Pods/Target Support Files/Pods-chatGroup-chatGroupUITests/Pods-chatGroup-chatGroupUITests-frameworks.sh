@@ -200,11 +200,17 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AVOSCloudLiveQuery/AVOSCloudLiveQuery.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SHEmotionKeyboard/SHEmotionKeyboard.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SHExtension/SHExtension.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AVOSCloudIM/AVOSCloudIM.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/AVOSCloudLiveQuery/AVOSCloudLiveQuery.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SHEmotionKeyboard/SHEmotionKeyboard.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SHExtension/SHExtension.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

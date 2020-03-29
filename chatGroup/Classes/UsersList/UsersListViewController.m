@@ -65,7 +65,9 @@
     }
     
     self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
+    self.hidesBottomBarWhenPushed = YES;
     [self performSegueWithIdentifier:@"enterConversationSegue" sender:self];
+    self.hidesBottomBarWhenPushed = NO;
 }
 /**
  *  刷新数据源

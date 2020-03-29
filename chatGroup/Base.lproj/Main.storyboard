@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16095" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16084.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -166,12 +166,12 @@
                     <navigationItem key="navigationItem" id="GNn-wj-0FC"/>
                     <connections>
                         <outlet property="userTableView" destination="Tk7-7r-Jp1" id="K0E-Po-TSi"/>
-                        <segue destination="VPX-Ha-nQs" kind="show" identifier="enterConversationSegue" id="mNW-j6-KZ3"/>
+                        <segue destination="VPX-Ha-nQs" kind="push" identifier="enterConversationSegue" id="fDT-B6-c1c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y4-tU-ezE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4618.840579710145" y="417.85714285714283"/>
+            <point key="canvasLocation" x="5422" y="418"/>
         </scene>
         <!--Conversation View Controller-->
         <scene sceneID="lyF-fw-6iO">
@@ -267,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01B-D7-yRp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5449.275362318841" y="417.85714285714283"/>
+            <point key="canvasLocation" x="6775" y="418"/>
         </scene>
         <!--消息-->
         <scene sceneID="brs-0V-9iR">
@@ -280,15 +280,51 @@
                         <viewLayoutGuide key="safeArea" id="fRp-Yw-A6U"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="消息" id="g9C-dL-Nhw"/>
+                    <connections>
+                        <outlet property="view" destination="gQ6-94-KU0" id="Pj7-hm-MSu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWg-Vj-8zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3695.652173913044" y="-229.01785714285714"/>
+            <point key="canvasLocation" x="3926" y="-556"/>
+        </scene>
+        <!--Create Chat Group View Controller-->
+        <scene sceneID="2cO-P2-uE8">
+            <objects>
+                <viewController id="A9o-YC-1js" customClass="createChatGroupViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uPY-Xm-ddJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="lGw-ct-0eP"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eeD-Qt-nn7"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Av6-pw-yFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5871" y="-363"/>
+        </scene>
+        <!--对话-->
+        <scene sceneID="Gas-Hx-Va0">
+            <objects>
+                <viewController id="ahn-VC-VcB" userLabel="对话" customClass="ChatViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lfu-us-VyA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="LK6-ug-zSJ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="nis-Zp-6MM"/>
+                    <navigationItem key="navigationItem" id="rlD-7l-Ry6"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OS0-vl-5rw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6967" y="-354"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xNV-VH-LCH">
             <objects>
-                <tabBarController id="hu5-zB-REo" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="hu5-zB-REo" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="43X-0y-X6r"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C98-mM-aA3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -297,7 +333,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="6lx-Lc-jdh" kind="relationship" relationship="viewControllers" id="h27-Px-w4j"/>
-                        <segue destination="P3L-cR-Apn" kind="relationship" relationship="viewControllers" id="StU-eG-gvm"/>
+                        <segue destination="P3L-cR-Apn" kind="relationship" relationship="viewControllers" id="2jg-Uy-wuD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDu-79-caP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -321,7 +357,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifY-lU-7h7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3708.6956521739135" y="417.85714285714283"/>
+            <point key="canvasLocation" x="4551" y="418"/>
         </scene>
     </scenes>
 </document>

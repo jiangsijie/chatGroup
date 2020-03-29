@@ -5,6 +5,8 @@ target 'chatGroup' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
+  pod 'SHEmotionKeyboard'
+  pod 'BEMCheckBox'
   # Pods for chatGroup
   pod 'AVOSCloud', '~> 12.1.3'
   pod 'AVOSCloudIM' , '~> 12.1.3'

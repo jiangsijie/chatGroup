@@ -1,0 +1,6 @@
+framework module SHEmotionKeyboard {
+  umbrella header "SHEmotionKeyboard-umbrella.h"
+
+  export *
+  module * { export * }
+}

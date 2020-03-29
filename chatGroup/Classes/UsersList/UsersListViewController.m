@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.userTableView.delegate = self;
     self.userTableView.dataSource = self;
-    
+
     self.usersList = [NSArray array];
     
     AVQuery *query = [AVQuery queryWithClassName:@"_User"];

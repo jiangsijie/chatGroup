@@ -10,18 +10,20 @@
 #import "MessageInputView.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
+#import <AVOSCloud/AVOSCloud.h>
+#import <AVOSCloudIM/AVOSCloudIM.h>
 
 #import "MessageHelper.h"
 
 @interface ChatViewController ()<MessageInputViewDelegate,
 ChatMessageCellDelegate,
 UITableViewDelegate,
+AVIMClientDelegate,
 UITableViewDataSource>
 {
     UIMenuItem * _copyMenuItem;
     UIMenuItem * _deleteMenuItem;
 }
-
 @property (nonatomic, strong) UITableView *chatTableView;
 @property (nonatomic, strong) MessageInputView *chatInputView;
 @property (nonatomic, strong) UIImageView *bgImageView;
@@ -38,6 +40,9 @@ UITableViewDataSource>
 
 //显示的时间集合
 @property (nonatomic, strong) NSMutableArray *timeArr;
+@property (strong, nonatomic) AVUser *currentUser;
+@property (strong, nonatomic) AVIMClient *client;
+
 @end
 
 @implementation ChatViewController
@@ -47,11 +52,19 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.currentUser = [AVUser currentUser];
+    self.client = [[AVIMClient alloc] initWithUser:self.currentUser];
+    
     self.view.backgroundColor = kInPutViewColor;
     self.dataSource = [[NSMutableArray alloc] init];
     
+    
     [self config];
     // Do any additional setup after loading the view.
+}
+
+- (void)conversation:(AVIMConversation *)conversation messageDelivered:(AVIMMessage *)message{
+    NSLog(@"%@", message.content);
 }
 
 -(void) config{
@@ -210,8 +223,20 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     message.messageType = SHMessageBodyType_text;
     message.text = text;
     
-    //添加到聊天界面
-    [self addChatMessageWithMessage:message isBottom:YES];
+    [self.client openWithCallback:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            AVIMConversationQuery *query = [self.client conversationQuery];
+            [query getConversationById:self.conversationId callback:^(AVIMConversation *conversation, NSError *error) {
+                [conversation sendMessage:[AVIMTextMessage messageWithText:text attributes:nil] callback:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        NSLog(@"发送成功！");
+                        //添加到聊天界面
+                        [self addChatMessageWithMessage:message isBottom:YES];
+                    }
+                }];
+            }];
+        }
+             }];
 }
 
 - (void)toolbarHeightChange{

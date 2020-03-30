@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateCGCellViewTableViewCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface createChatGroupViewController : UIViewController
+@interface CreateChatGroupViewController : UIViewController
 
 @end
 

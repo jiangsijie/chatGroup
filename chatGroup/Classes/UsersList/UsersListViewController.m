@@ -49,14 +49,31 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
-    AVUser *user = [self.usersList objectAtIndex:indexPath.row];
-    cell.usernameLabel.text = user.username;
-    return cell;
+    if(indexPath.section == 0) {
+        UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
+        AVUser *user = [self.usersList objectAtIndex:indexPath.row];
+        cell.usernameLabel.text = user.username;
+        return cell;
+    } else {
+        UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
+        cell.usernameLabel.text = @"新建群聊";
+        return cell;
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return section == 0 ? @"好友" : @"群聊";
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.usersList.count;
+    if(section == 0) {
+        return self.usersList.count;
+    }
+    return 1;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -64,11 +81,20 @@
         return;
     }
     
-    self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
-    self.hidesBottomBarWhenPushed = YES;
-    [self performSegueWithIdentifier:@"enterConversationSegue" sender:self];
-    self.hidesBottomBarWhenPushed = NO;
+    if (indexPath.section == 0) {
+         self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
+         self.hidesBottomBarWhenPushed = YES;
+         [self performSegueWithIdentifier:@"enterConversationSegue" sender:self];
+         self.hidesBottomBarWhenPushed = NO;
+    } else {
+         self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
+         self.hidesBottomBarWhenPushed = YES;
+         [self performSegueWithIdentifier:@"enterCreateGroupSegue" sender:self];
+         self.hidesBottomBarWhenPushed = NO;
+    }
+ 
 }
+
 /**
  *  刷新数据源
  */

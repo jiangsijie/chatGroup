@@ -18,7 +18,6 @@
 @interface ChatViewController ()<MessageInputViewDelegate,
 ChatMessageCellDelegate,
 UITableViewDelegate,
-AVIMClientDelegate,
 UITableViewDataSource>
 {
     UIMenuItem * _copyMenuItem;
@@ -63,9 +62,6 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     // Do any additional setup after loading the view.
 }
 
-- (void)conversation:(AVIMConversation *)conversation messageDelivered:(AVIMMessage *)message{
-    NSLog(@"%@", message.content);
-}
 
 -(void) config{
     [self.view addSubview:self.chatInputView];
@@ -90,80 +86,80 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
             NSArray *tmp = [self loadMessageDataWithNum:10 isLoad:YES];
             
             if (tmp.count) {
-                 NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, tmp.count)];
-                               [self.dataSource insertObjects:tmp atIndexes:indexes];
-
-                               [self.chatTableView reloadData];
-                               //滚动到刷新位置
-                               [self tableViewScrollToIndex:tmp.count];
+                NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndexesInRange:NSMakeRange(0, tmp.count)];
+                [self.dataSource insertObjects:tmp atIndexes:indexes];
+                
+                [self.chatTableView reloadData];
+                //滚动到刷新位置
+                [self tableViewScrollToIndex:tmp.count];
                 
             }
             [self configUnread:(self.unreadBtn.tag - tmp.count)];
         }else{
-                //获取数据
-                NSArray *temp = [self loadMessageDataWithNum:10 isLoad:NO];
+            //获取数据
+            NSArray *temp = [self loadMessageDataWithNum:10 isLoad:NO];
+            
+            if (temp.count) {
+                //添加数据
+                [self.dataSource addObjectsFromArray:temp];
                 
-                if (temp.count) {
-                    //添加数据
-                    [self.dataSource addObjectsFromArray:temp];
-                    
-                    [self.chatTableView reloadData];
-                    //滚动到最下方
-                    [self tableViewScrollToBottom];
-                }
-                
-                //配置未读控件
-                [self configUnread:(self.unreadBtn.tag - temp.count)];
+                [self.chatTableView reloadData];
+                //滚动到最下方
+                [self tableViewScrollToBottom];
             }
             
-            [self.refresh endRefreshing];
+            //配置未读控件
+            [self configUnread:(self.unreadBtn.tag - temp.count)];
+        }
+        
+        [self.refresh endRefreshing];
     });
 }
 
 -(NSArray <MessageFrame *> *)loadMessageDataWithNum:(NSUInteger)num isLoad:(BOOL)isLoad{
     NSMutableArray *temp = [[NSMutableArray alloc]init];
-        NSMutableArray *loadTimeArr = [[NSMutableArray alloc]init];
+    NSMutableArray *loadTimeArr = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < num; i++) {
         
-        for (int i = 0; i < num; i++) {
+        Message *message;
+        
+        switch (arc4random()%8) {
+            case 0:
+                message = [self getTextMessage];
+                break;
+            default:
+                message = [self getTextMessage];
+                break;
+        }
+        
+        message.messageState = SHSendMessageType_Successed;
+        
+        MessageFrame *messageFrame = [self dealDataWithMessage:message dateSoure:temp setTime:isLoad?loadTimeArr.lastObject:self.timeArr.lastObject];
+        
+        if (messageFrame) {//做添加
             
-            Message *message;
-            
-            switch (arc4random()%8) {
-                case 0:
-                    message = [self getTextMessage];
-                    break;
-                default:
-                    message = [self getTextMessage];
-                    break;
-            }
-            
-            message.messageState = SHSendMessageType_Successed;
-            
-            MessageFrame *messageFrame = [self dealDataWithMessage:message dateSoure:temp setTime:isLoad?loadTimeArr.lastObject:self.timeArr.lastObject];
-            
-            if (messageFrame) {//做添加
+            if (messageFrame.showTime) {
                 
-                if (messageFrame.showTime) {
-                    
-                    if (isLoad) {
-                        [loadTimeArr addObject:message.sendTime];
-                    }else{
-                        [self.timeArr addObject:message.sendTime];
-                    }
+                if (isLoad) {
+                    [loadTimeArr addObject:message.sendTime];
+                }else{
+                    [self.timeArr addObject:message.sendTime];
                 }
-                
-                [temp addObject:messageFrame];
             }
-        }
-        
-        if (loadTimeArr.count) {
-            NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndex:0];
-            [indexes addIndex:0];
             
-            [self.timeArr insertObjects:loadTimeArr atIndexes:indexes];
+            [temp addObject:messageFrame];
         }
+    }
+    
+    if (loadTimeArr.count) {
+        NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndex:0];
+        [indexes addIndex:0];
         
-        return temp;
+        [self.timeArr insertObjects:loadTimeArr atIndexes:indexes];
+    }
+    
+    return temp;
 }
 
 #pragma mark 获取文本
@@ -236,7 +232,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
                 }];
             }];
         }
-             }];
+    }];
 }
 
 - (void)toolbarHeightChange{
@@ -272,7 +268,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
             //设置菜单内容
             NSArray *menuArr = [self getMenuControllerWithMessage:message];
             //显示菜单
-//            [MenuController showMenuControllerWithView:cell menuArr:menuArr showPiont:cell.tapPoint];
+            //            [MenuController showMenuControllerWithView:cell menuArr:menuArr showPiont:cell.tapPoint];
             
             cell.tapPoint = CGPointZero;
         }
@@ -290,7 +286,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
         case SHMessageClickType_click_retry://点击重发
         {
             NSLog(@"点击重发");
-//            [self resendChatMessageWithMessageId:message.messageId];
+            //            [self resendChatMessageWithMessageId:message.messageId];
         }
             break;
         default:
@@ -306,60 +302,60 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
         case SHMessageBodyType_image://图片
         {
             NSLog(@"点击了 --- 图片消息");
-
+            
         }
             break;
         case SHMessageBodyType_voice://语音
         {
-//            NSLog(@"点击了 --- 语音消息");
-//            SHAudioPlayerHelper *audio = [SHAudioPlayerHelper shareInstance];
-//            audio.delegate = self;
-//
-//            if (self.selectCell.btnContent.isPlaying) {
-//                //正在播放
-//                self.selectCell.btnContent.isPlaying = NO;
-//                [audio stopAudio];//停止
-//            }else{
-//                //未播放
-//                self.selectCell.btnContent.isPlaying = YES;
-//                [audio managerAudioWithFileArr:@[message] isClear:YES];
-//            }
+            //            NSLog(@"点击了 --- 语音消息");
+            //            SHAudioPlayerHelper *audio = [SHAudioPlayerHelper shareInstance];
+            //            audio.delegate = self;
+            //
+            //            if (self.selectCell.btnContent.isPlaying) {
+            //                //正在播放
+            //                self.selectCell.btnContent.isPlaying = NO;
+            //                [audio stopAudio];//停止
+            //            }else{
+            //                //未播放
+            //                self.selectCell.btnContent.isPlaying = YES;
+            //                [audio managerAudioWithFileArr:@[message] isClear:YES];
+            //            }
         }
             break;
         case SHMessageBodyType_location://位置
         {
             NSLog(@"点击了 --- 位置消息");
             //跳转地图界面
-//            SHChatMessageLocationViewController *location = [[SHChatMessageLocationViewController alloc]init];
-//            location.message = message;
-//            location.locType = SHMessageLocationType_Look;
-//            [self.navigationController pushViewController:location animated:YES];
+            //            SHChatMessageLocationViewController *location = [[SHChatMessageLocationViewController alloc]init];
+            //            location.message = message;
+            //            location.locType = SHMessageLocationType_Look;
+            //            [self.navigationController pushViewController:location animated:YES];
         }
             break;
         case SHMessageBodyType_video://视频
         {
             NSLog(@"点击了 --- 视频消息");
-//            //本地路径
-//            NSString *videoPath = [FileHelper getFilePathWithName:message.videoName type:SHMessageFileType_video];
-//
-//            if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {//如果本地路径存在
-//
-//                AVPlayer *player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:videoPath]];
-//                AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-//                playerViewController.player = player;
-//                [self.navigationController pushViewController:playerViewController animated:YES];
-//                [playerViewController.player play];
-//
-//            }else{//使用URL
-//
-//                if (message.videoUrl.length) {
-//                    AVPlayer *player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:message.videoUrl]];
-//                    AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-//                    playerViewController.player = player;
-//                    [self.navigationController pushViewController:playerViewController animated:YES];
-//                    [playerViewController.player play];
-//                }
-//            }
+            //            //本地路径
+            //            NSString *videoPath = [FileHelper getFilePathWithName:message.videoName type:SHMessageFileType_video];
+            //
+            //            if ([[NSFileManager defaultManager] fileExistsAtPath:videoPath]) {//如果本地路径存在
+            //
+            //                AVPlayer *player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:videoPath]];
+            //                AVPlayerViewController *playerViewController = [AVPlayerViewController new];
+            //                playerViewController.player = player;
+            //                [self.navigationController pushViewController:playerViewController animated:YES];
+            //                [playerViewController.player play];
+            //
+            //            }else{//使用URL
+            //
+            //                if (message.videoUrl.length) {
+            //                    AVPlayer *player = [AVPlayer playerWithURL:[NSURL fileURLWithPath:message.videoUrl]];
+            //                    AVPlayerViewController *playerViewController = [AVPlayerViewController new];
+            //                    playerViewController.player = player;
+            //                    [self.navigationController pushViewController:playerViewController animated:YES];
+            //                    [playerViewController.player play];
+            //                }
+            //            }
         }
             break;
         case SHMessageBodyType_card://名片
@@ -431,35 +427,35 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
 #pragma mark 开始播放
 - (void)didAudioPlayerBeginPlay:(NSString *)playerName{
     
-//    for (SHChatMessageTableViewCell *cell in self.chatTableView.visibleCells) {
-//        if ([cell.btnContent.message.voiceName isEqualToString:playerName]) {
-//            [cell.btnContent playVoiceAnimation];
-//            cell.btnContent.readMarker.hidden = YES;
-//        }else{
-//            cell.btnContent.isPlaying = NO;
-//            [cell.btnContent stopVoiceAnimation];
-//        }
-//    }
+    //    for (SHChatMessageTableViewCell *cell in self.chatTableView.visibleCells) {
+    //        if ([cell.btnContent.message.voiceName isEqualToString:playerName]) {
+    //            [cell.btnContent playVoiceAnimation];
+    //            cell.btnContent.readMarker.hidden = YES;
+    //        }else{
+    //            cell.btnContent.isPlaying = NO;
+    //            [cell.btnContent stopVoiceAnimation];
+    //        }
+    //    }
 }
 
 #pragma mark 结束播放
 - (void)didAudioPlayerStopPlay:(NSString *)playerName error:(NSString *)error{
     
-//    for (SHChatMessageTableViewCell *cell in self.chatTableView.visibleCells) {
-//        if ([cell.btnContent.message.voiceName isEqualToString:playerName]) {
-//            [cell.btnContent stopVoiceAnimation];
-//            cell.btnContent.isPlaying = NO;
-//        }
-//    }
+    //    for (SHChatMessageTableViewCell *cell in self.chatTableView.visibleCells) {
+    //        if ([cell.btnContent.message.voiceName isEqualToString:playerName]) {
+    //            [cell.btnContent stopVoiceAnimation];
+    //            cell.btnContent.isPlaying = NO;
+    //        }
+    //    }
 }
 
 #pragma mark 暂停播放
 - (void)didAudioPlayerPausePlay:(NSString *)playerName{
-//    for (ChatMessageTableViewCell *cell in self.chatTableView.visibleCells) {
-//        if ([cell.btnContent.message.voiceName isEqualToString:playerName]) {
-//            [cell.btnContent stopVoiceAnimation];
-//        }
-//    }
+    //    for (ChatMessageTableViewCell *cell in self.chatTableView.visibleCells) {
+    //        if ([cell.btnContent.message.voiceName isEqualToString:playerName]) {
+    //            [cell.btnContent stopVoiceAnimation];
+    //        }
+    //    }
 }
 
 #pragma mark - 数据处理
@@ -478,9 +474,9 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     
     if (messageFrame) {//做添加
         
-//        if (messageFrame.showTime) {
-//            [self.timeArr addObject:message.sendTime];
-//        }
+        //        if (messageFrame.showTime) {
+        //            [self.timeArr addObject:message.sendTime];
+        //        }
         [self.dataSource addObject:messageFrame];
     }
     
@@ -504,7 +500,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     [dataSoure enumerateObjectsUsingBlock:^(MessageFrame *obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         if ([message.messageId isEqualToString:obj.message.messageId]) {//同一条消息
-             *stop = YES;
+            *stop = YES;
             
             if ([message.sendTime isEqualToString:obj.message.sendTime]) {//时间相同做刷新
                 
@@ -544,7 +540,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
         
         if ([obj.message.messageId isEqual:messageId]) {
             *stop = YES;
-        
+            
             //删除数据源
             [self.dataSource removeObject:obj];
             
@@ -643,7 +639,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
 
 #pragma mark 滚动到指定位置
 - (void)tableViewScrollToIndex:(NSInteger)index{
-
+    
     @synchronized (self.dataSource) {
         
         if (self.dataSource.count > index) {
@@ -677,7 +673,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] getValue:&animationCurve];
     [[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] getValue:&animationDuration];
     [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardEndFrame];
-
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:animationDuration];
     [UIView setAnimationCurve:animationCurve];
@@ -739,8 +735,8 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
         //配置Item按钮
         [plugIcons enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop)  {
             
-//            SHShareMenuItem *shareMenuItem = [[SHShareMenuItem alloc] initWithIcon:[SHFileHelper imageNamed:obj] title:plugTitle[idx]];
-//            [shareMenuItems addObject:shareMenuItem];
+            //            SHShareMenuItem *shareMenuItem = [[SHShareMenuItem alloc] initWithIcon:[SHFileHelper imageNamed:obj] title:plugTitle[idx]];
+            //            [shareMenuItems addObject:shareMenuItem];
         }];
         
         _chatInputView.shareMenuItems = shareMenuItems;
@@ -835,13 +831,12 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 @end

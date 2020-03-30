@@ -36,9 +36,14 @@ extern BOOL loginSuccessed;
 }
 
 -(void)notificationFirst:(NSNotification *)notification{
-    NSString  *message=[notification object];
-    [self.conversationList addObject:message];
-    [self refreshData];
+    AVIMTypedMessage *message = [notification object];
+    NSString *from = message.attributes[@"from"];
+    NSString *to = message.attributes[@"to"];
+
+    if(((message.status == AVIMMessageStatusSent) && [self.talkToUser.objectId isEqualToString:to]) || (message.status == AVIMMessageStatusDelivered && [self.talkToUser.objectId isEqualToString:from])) {
+        [self.conversationList addObject:message];
+        [self refreshData];
+    }
 }
 
 - (void)viewDidLoad {

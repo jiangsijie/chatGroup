@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVOSCloud/AVOSCloud.h>
+#import <AVOSCloudIM/AVOSCloudIM.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+NSMutableArray *gMessageList;
+AVIMClient *gAVIMCient;
+BOOL loginSuccessed;
 
 @interface LoginOrSignupViewController : UIViewController
 

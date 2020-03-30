@@ -9,16 +9,14 @@
 #import "UsersListViewController.h"
 #import "UserTableViewCell.h"
 #import "ConversationViewController.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudIM/AVOSCloudIM.h>
+
+extern AVIMClient *gAVIMCient;
+extern BOOL loginSuccessed;
 
 @interface UsersListViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
 @property (strong, nonatomic) NSArray *usersList;
-@property (strong, nonatomic) AVIMClient *client;
-@property (strong, nonatomic) AVUser *currentUser;
 @property (strong, nonatomic) AVUser *talkToUser;
-@property (assign, nonatomic) BOOL loginFailed;
 
 @end
 
@@ -38,14 +36,6 @@
         self.usersList = users;
         [self refreshData];
     }];
-    
-    self.currentUser = [AVUser currentUser];
-    self.client = [[AVIMClient alloc] initWithUser:self.currentUser];
-    [AVUser logInWithUsernameInBackground:self.currentUser.username password:self.currentUser.password block:^(AVUser * _Nullable user, NSError * _Nullable error) {
-        if(!user) {
-            self.loginFailed = YES;
-        }
-    }];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -60,7 +50,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.loginFailed) {
+    if(!loginSuccessed) {
         return;
     }
     

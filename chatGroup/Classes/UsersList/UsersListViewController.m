@@ -29,7 +29,7 @@ extern BOOL loginSuccessed;
     self.userTableView.dataSource = self;
 
     self.usersList = [NSArray array];
-    
+
     AVQuery *query = [AVQuery queryWithClassName:@"_User"];
     [query selectKeys:@[@"objectId", @"username"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
@@ -96,19 +96,5 @@ extern BOOL loginSuccessed;
     ConversationViewController *destination = segue.destinationViewController;
     destination.talkToUser = self.talkToUser;
 }
-
-- (IBAction)doSomething:(id)sender {
-
-}
-//    if segue.identifier == "backMainForP1"{
-//        //获取返回的控制器
-//        let backVC = segue.source as! P1ViewController
-//        mainLabel.text = backVC.backSting//获取返回值
-//    }
-//    if segue.identifier == "backMainForP2"{
-//        //获取返回的控制器
-//        let backVC = segue.source as! P2ViewController
-//        mainLabel.text = backVC.backSting//获取返回值
-//    }
 
 @end

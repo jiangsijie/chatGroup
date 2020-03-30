@@ -104,6 +104,7 @@ extern BOOL loginSuccessed;
                 NSLog(@"发送成功！");
                   self.messageTextField.text = @"";
                   [gMessageList addObject:message];
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"Second" object:message];
                   [self.conversationList addObject:message];
                   [self refreshData];
               }

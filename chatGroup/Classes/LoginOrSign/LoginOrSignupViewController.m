@@ -43,7 +43,7 @@
               } else {
                   NSLog(@"登录成功");
                   [self performSegueWithIdentifier:@"goToMainPageSegue" sender:self];
-                  
+
                   AVUser *currentUser = [AVUser currentUser];
                   gAVIMCient = [[AVIMClient alloc] initWithClientId:currentUser.objectId];
                   gAVIMCient.delegate = self;

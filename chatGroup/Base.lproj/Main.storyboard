@@ -257,24 +257,85 @@
             </objects>
             <point key="canvasLocation" x="6773.913043478261" y="417.85714285714283"/>
         </scene>
-        <!--消息-->
+        <!--Message View Controller-->
         <scene sceneID="brs-0V-9iR">
             <objects>
                 <viewController id="6lx-Lc-jdh" customClass="MessageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gQ6-94-KU0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JA2-Jd-qKx">
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="BNg-gW-j6m"/>
+                                    <constraint firstAttribute="height" constant="703" id="dTt-bn-AJp"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="conversationOfMessageCell" rowHeight="60" id="SQG-LT-wxY" customClass="MessageTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SQG-LT-wxY" id="9Ab-f3-F6y">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="chatWIthWho" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hkI-ZY-vXn">
+                                                    <rect key="frame" x="20" y="5" width="119.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="latestMessage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbu-5o-r2h">
+                                                    <rect key="frame" x="20" y="28" width="337" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="337" id="Jdb-b9-aax"/>
+                                                        <constraint firstAttribute="height" constant="21" id="sQG-Ow-eNG"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rbu-5o-r2h" firstAttribute="top" secondItem="hkI-ZY-vXn" secondAttribute="bottom" constant="2" id="56B-bQ-sM5"/>
+                                                <constraint firstItem="hkI-ZY-vXn" firstAttribute="leading" secondItem="9Ab-f3-F6y" secondAttribute="leading" constant="20" id="5Td-6j-cFm"/>
+                                                <constraint firstItem="rbu-5o-r2h" firstAttribute="bottom" secondItem="9Ab-f3-F6y" secondAttribute="bottomMargin" id="DY8-v2-Y1d"/>
+                                                <constraint firstItem="hkI-ZY-vXn" firstAttribute="top" secondItem="9Ab-f3-F6y" secondAttribute="top" constant="5" id="PEe-KH-H0M"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hkI-ZY-vXn" secondAttribute="trailing" constant="20" symbolic="YES" id="Teq-b5-fy8"/>
+                                                <constraint firstAttribute="trailing" secondItem="rbu-5o-r2h" secondAttribute="trailing" constant="57" id="YVe-Z1-BvY"/>
+                                                <constraint firstItem="rbu-5o-r2h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9Ab-f3-F6y" secondAttribute="leading" constant="20" symbolic="YES" id="yNT-rG-yWx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="chatWithWhoLabel" destination="hkI-ZY-vXn" id="IsH-Gp-en9"/>
+                                            <outlet property="latestMessageLabel" destination="rbu-5o-r2h" id="3q2-kx-2NT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="6lx-Lc-jdh" id="6e4-dU-cYG"/>
+                                    <outlet property="delegate" destination="6lx-Lc-jdh" id="dFo-0v-1vT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="JA2-Jd-qKx" firstAttribute="centerX" secondItem="gQ6-94-KU0" secondAttribute="centerX" id="X9s-3J-Iyf"/>
+                            <constraint firstItem="JA2-Jd-qKx" firstAttribute="top" secondItem="fRp-Yw-A6U" secondAttribute="top" id="rdQ-Da-HtP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="fRp-Yw-A6U"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="消息" image="message" catalog="system" selectedImage="message.fill" id="g9C-dL-Nhw"/>
+                    <navigationItem key="navigationItem" id="khP-3z-twh"/>
                     <connections>
+                        <outlet property="conversationListOfMessageTableView" destination="JA2-Jd-qKx" id="Wyx-yq-Yei"/>
                         <outlet property="view" destination="gQ6-94-KU0" id="Pj7-hm-MSu"/>
+                        <segue destination="VPX-Ha-nQs" kind="show" identifier="fromMessageTabToConversationPageSegue" id="sUn-Jz-H7o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWg-Vj-8zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3926" y="-556"/>
+            <point key="canvasLocation" x="4834.7826086956529" y="-556.47321428571422"/>
         </scene>
         <!--Create Chat Group View Controller-->
         <scene sceneID="2cO-P2-uE8">
@@ -361,7 +422,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Av6-pw-yFM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6206" y="-354"/>
+            <point key="canvasLocation" x="7115.9420289855079" y="-354.24107142857139"/>
         </scene>
         <!--对话-->
         <scene sceneID="Gas-Hx-Va0">
@@ -378,7 +439,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OS0-vl-5rw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7132" y="-354"/>
+            <point key="canvasLocation" x="8042.0289855072469" y="-354.24107142857139"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xNV-VH-LCH">
@@ -391,7 +452,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="6lx-Lc-jdh" kind="relationship" relationship="viewControllers" id="h27-Px-w4j"/>
+                        <segue destination="Mpp-r1-dsl" kind="relationship" relationship="viewControllers" id="h27-Px-w4j"/>
                         <segue destination="P3L-cR-Apn" kind="relationship" relationship="viewControllers" id="2jg-Uy-wuD"/>
                     </connections>
                 </tabBarController>
@@ -418,6 +479,25 @@
             </objects>
             <point key="canvasLocation" x="3967" y="295"/>
         </scene>
+        <!--消息-->
+        <scene sceneID="v1j-dy-Ov7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mpp-r1-dsl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="消息" image="message" catalog="system" selectedImage="message.fill" id="g9C-dL-Nhw"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="khQ-Wz-w8a">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="6lx-Lc-jdh" kind="relationship" relationship="rootViewController" id="Fhs-pj-fvg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ee5-MY-IjI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3924.6376811594205" y="-556.47321428571422"/>
+        </scene>
     </scenes>
     <resources>
         <image name="message" catalog="system" width="64" height="56"/>
@@ -425,4 +505,7 @@
         <image name="person.2" catalog="system" width="64" height="40"/>
         <image name="person.2.fill" catalog="system" width="64" height="40"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sUn-Jz-H7o"/>
+    </inferredMetricsTieBreakers>
 </document>

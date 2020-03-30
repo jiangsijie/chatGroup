@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ConversationTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *wordsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+
 
 @end
 

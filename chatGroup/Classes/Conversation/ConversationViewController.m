@@ -8,9 +8,12 @@
 
 #import "ConversationViewController.h"
 #import "ConversationTableViewCell.h"
+
+extern NSMutableArray *gMessageList;
+extern AVIMClient *gAVIMCient;
+extern BOOL loginSuccessed;
+
 @interface ConversationViewController ()<UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) AVIMClient *client;
-@property (strong, nonatomic) AVUser *currentUser;
 @property (weak, nonatomic) IBOutlet UITableView *conversationTableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) NSMutableArray* conversationList;
@@ -18,12 +21,34 @@
 
 @implementation ConversationViewController
 
+- (void) initConversationList {
+    for(NSInteger i=0,count=gMessageList.count; i<count; i++) {
+        AVIMTypedMessage *message = [gMessageList objectAtIndex:i];
+        NSString *from = message.attributes[@"from"];
+        NSString *to = message.attributes[@"to"];
+
+        if((message.status == AVIMMessageStatusSent) && [self.talkToUser.objectId isEqualToString:to]) {
+            [self.conversationList addObject:message];
+        } else if(message.status == AVIMMessageStatusDelivered && [self.talkToUser.objectId isEqualToString:from]) {
+            [self.conversationList addObject:message];
+        }
+    }
+}
+
+-(void)notificationFirst:(NSNotification *)notification{
+    NSString  *message=[notification object];
+    [self.conversationList addObject:message];
+    [self refreshData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.conversationList = [NSMutableArray array];
-    self.currentUser = [AVUser currentUser];
-    self.client = [[AVIMClient alloc] initWithUser:self.currentUser];
+    self.conversationList = [[NSMutableArray alloc] init];
+    
+    [self initConversationList];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationFirst:) name:@"First" object:nil];
+    
     
     self.tabBarController.tabBar.hidden = YES;
     self.navigationItem.title = self.talkToUser.username;
@@ -34,9 +59,16 @@
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conversationCell"];
     cell.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
-    cell.textLabel.text = [self.conversationList objectAtIndex:indexPath.row];
-//    cell.textLabel.backgroundColor = [UIColor whiteColor];
-//    cell.textLabel.layer.cornerRadius = 8;
+    AVIMTypedMessage *message = [self.conversationList objectAtIndex:indexPath.row];
+    cell.messageLabel.text = message.text;
+    if(message.status == AVIMMessageStatusSent) {
+        //cell.textLabel.textAlignment = NSTextAlignmentRight;
+        cell.contentMode = UIViewContentModeRight;
+    } else {
+        //.textLabel.textAlignment = NSTextAlignmentLeft;
+    }
+    cell.messageLabel.backgroundColor = [UIColor whiteColor];
+    cell.messageLabel.layer.cornerRadius = 8;
 //    cell.textLabel.layer.masksToBounds = YES;
 //    cell.textLabel.layer.borderWidth = 1;
 //    cell.textLabel.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -47,26 +79,30 @@
     return self.conversationList.count;
 }
 - (IBAction)sendBtnOnClick:(id)sender {
-    [self.client openWithCallback:^(BOOL succeeded, NSError * _Nullable error) {
-        if(!succeeded) {
-            return;
-        }
+    if(!loginSuccessed) {
+        return;
+    }
         if(!self.messageTextField.text) {
             return;
         }
 
-        [self.client createConversationWithName:@"对话" clientIds:@[self.talkToUser.objectId] attributes:nil options:AVIMConversationOptionUnique
+        AVUser *currentUser = [AVUser currentUser];
+        NSDictionary *attributes = @{
+            @"from":currentUser.objectId,
+            @"to": self.talkToUser.objectId
+        };
+        [gAVIMCient createConversationWithName:@"对话" clientIds:@[self.talkToUser.objectId] attributes:attributes options:AVIMConversationOptionUnique
                                callback:^(AVIMConversation *conversation, NSError *error) {
-            AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.messageTextField.text attributes:nil];
+            AVIMTextMessage *message = [AVIMTextMessage messageWithText:self.messageTextField.text attributes:attributes];
             [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
               if (succeeded) {
                 NSLog(@"发送成功！");
-                  [self.conversationList addObject:self.messageTextField.text];
+                  [gMessageList addObject:message];
+                  [self.conversationList addObject:message];
                   [self refreshData];
               }
             }];
         }];
-    }];
 }
 
 /**

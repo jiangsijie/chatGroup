@@ -18,65 +18,45 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fy-m3-9Us">
                                 <rect key="frame" x="67" y="248" width="280" height="263"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-e2-6rk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzC-e2-6rk">
                                         <rect key="frame" x="20" y="20" width="239" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="YKh-Ds-76O"/>
-                                            <constraint firstAttribute="width" constant="239" id="lit-ah-xYu"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="239" id="lit-ah-xYu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4z-yt-lWG">
-                                        <rect key="frame" x="20" y="202" width="80" height="40"/>
+                                        <rect key="frame" x="20" y="181" width="80" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="5sg-W7-ip3"/>
-                                            <constraint firstAttribute="width" constant="80" id="GiE-HW-8jo"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="GiE-HW-8jo"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="登录">
-                                            <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <integer key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="loginBtnOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gWz-wO-zgo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2tF-yY-5TB">
-                                        <rect key="frame" x="179" y="202" width="80" height="40"/>
+                                        <rect key="frame" x="179" y="181" width="80" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="9Sn-dA-E8g"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="9Sn-dA-E8g"/>
                                             <constraint firstAttribute="height" constant="40" id="hZ3-h3-vVr"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="注册"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorWithUIColor">
-                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="signupBtnOnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="l2u-Jw-lKR"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0K-VU-1Si">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0K-VU-1Si">
                                         <rect key="frame" x="20" y="101" width="239" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="239" id="KX8-7o-n4q"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="239" id="KX8-7o-n4q"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -84,17 +64,19 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="F4z-yt-lWG" firstAttribute="top" secondItem="0fy-m3-9Us" secondAttribute="top" constant="202" id="EYM-lj-APs"/>
+                                    <constraint firstItem="F4z-yt-lWG" firstAttribute="top" secondItem="0fy-m3-9Us" secondAttribute="top" constant="181" id="EYM-lj-APs"/>
                                     <constraint firstItem="a0K-VU-1Si" firstAttribute="top" secondItem="0fy-m3-9Us" secondAttribute="top" constant="101" id="LI8-lc-aUj"/>
+                                    <constraint firstItem="2tF-yY-5TB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="F4z-yt-lWG" secondAttribute="trailing" constant="8" symbolic="YES" id="ONl-7U-Qn5"/>
                                     <constraint firstItem="2tF-yY-5TB" firstAttribute="trailing" secondItem="a0K-VU-1Si" secondAttribute="trailing" id="Qgz-xB-hVB"/>
+                                    <constraint firstAttribute="trailing" secondItem="YzC-e2-6rk" secondAttribute="trailing" constant="21" id="dMb-PH-mVm"/>
                                     <constraint firstItem="F4z-yt-lWG" firstAttribute="leading" secondItem="a0K-VU-1Si" secondAttribute="leading" id="ezV-nQ-dpT"/>
-                                    <constraint firstItem="2tF-yY-5TB" firstAttribute="top" secondItem="0fy-m3-9Us" secondAttribute="top" constant="202" id="tMR-nQ-ILh"/>
+                                    <constraint firstItem="2tF-yY-5TB" firstAttribute="top" secondItem="0fy-m3-9Us" secondAttribute="top" constant="181" id="tMR-nQ-ILh"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YzC-e2-6rk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="5WY-39-qsS"/>
+                            <constraint firstItem="YzC-e2-6rk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5WY-39-qsS"/>
                             <constraint firstItem="a0K-VU-1Si" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="7zj-wL-VW4"/>
                             <constraint firstItem="0fy-m3-9Us" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MOl-R4-WfJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0fy-m3-9Us" secondAttribute="bottom" constant="351" id="V2h-a5-fQa"/>
@@ -107,7 +89,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Sft-1w-xJh"/>
                     <connections>
+                        <outlet property="loginBtn" destination="F4z-yt-lWG" id="IVd-qY-xph"/>
                         <outlet property="password" destination="a0K-VU-1Si" id="PSG-PB-2WB"/>
+                        <outlet property="signupBtn" destination="2tF-yY-5TB" id="m2H-K1-0jf"/>
                         <outlet property="userName" destination="YzC-e2-6rk" id="clM-mY-sXq"/>
                         <segue destination="hu5-zB-REo" kind="show" identifier="goToMainPageSegue" id="Zy3-w2-Wyi"/>
                     </connections>
@@ -137,7 +121,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xve-Hu-a1l">
-                                                    <rect key="frame" x="20" y="13" width="350" height="21"/>
+                                                    <rect key="frame" x="20" y="13" width="76" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="8Zo-xL-rVr"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="350" id="raO-Li-EuA"/>
@@ -416,7 +400,7 @@
         <scene sceneID="fRq-Oy-45o">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P3L-cR-Apn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="通讯录" id="PjN-lq-fyW"/>
+                    <tabBarItem key="tabBarItem" title="通讯录" image="person.2" catalog="system" selectedImage="person.2.fill" id="PjN-lq-fyW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UtF-BY-nSo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -432,4 +416,10 @@
             <point key="canvasLocation" x="3967" y="295"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="message" catalog="system" width="64" height="56"/>
+        <image name="message.fill" catalog="system" width="64" height="56"/>
+        <image name="person.2" catalog="system" width="64" height="40"/>
+        <image name="person.2.fill" catalog="system" width="64" height="40"/>
+    </resources>
 </document>

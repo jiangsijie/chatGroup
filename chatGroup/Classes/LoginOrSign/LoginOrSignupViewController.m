@@ -12,6 +12,8 @@
 @interface LoginOrSignupViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIButton *signupBtn;
+@property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 
 @end
 
@@ -19,7 +21,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setStyle];
+}
+
+- (void)setStyle {
+    self.signupBtn.layer.borderColor = UIColor.systemBlueColor.CGColor;
+    self.signupBtn.layer.borderWidth = 1;
+    self.signupBtn.layer.cornerRadius = 5;
+    self.loginBtn.backgroundColor = UIColor.systemBlueColor;
+    self.loginBtn.layer.borderColor = UIColor.systemBlueColor.CGColor;
+    self.loginBtn.layer.borderWidth = 1;
+    self.loginBtn.layer.cornerRadius = 5;
 }
 - (IBAction)loginBtnOnClick:(id)sender {
     NSString *username = self.userName.text;

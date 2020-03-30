@@ -816,7 +816,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.title = @"晶晶";
+    self.title = @"群聊";
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

@@ -74,9 +74,9 @@ extern BOOL loginSuccessed;
     }
     cell.messageLabel.backgroundColor = [UIColor whiteColor];
     cell.messageLabel.layer.cornerRadius = 8;
+    cell.messageLabel.adjustsFontSizeToFitWidth =YES;
+    //cell.messageLabel.frame.origin = 100;
 //    cell.textLabel.layer.masksToBounds = YES;
-//    cell.textLabel.layer.borderWidth = 1;
-//    cell.textLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     return cell;
 }
 
@@ -102,6 +102,7 @@ extern BOOL loginSuccessed;
             [conversation sendMessage:message callback:^(BOOL succeeded, NSError *error) {
               if (succeeded) {
                 NSLog(@"发送成功！");
+                  self.messageTextField.text = @"";
                   [gMessageList addObject:message];
                   [self.conversationList addObject:message];
                   [self refreshData];

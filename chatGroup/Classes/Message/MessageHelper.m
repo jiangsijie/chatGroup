@@ -100,8 +100,8 @@
 //        message.messageRead = NO;
 //    }
     
-    message.userId = @"123";
-    message.userName = @"小明";
+//    message.userId = @"123";
+//    message.userName = @"小明";
     message.avator = @"headImage.jpeg";
     
     return message;

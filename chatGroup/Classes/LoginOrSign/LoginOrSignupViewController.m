@@ -7,12 +7,14 @@
 //
 
 #import "LoginOrSignupViewController.h"
+#import "FileHelper.h"
 
 @interface LoginOrSignupViewController ()<AVIMClientDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIButton *signupBtn;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
+@property (nonatomic, strong) UIImageView *bgImageView;
 
 @end
 
@@ -22,6 +24,8 @@
     [super viewDidLoad];
     [self setStyle];
     gMessageList = [NSMutableArray arrayWithCapacity:8];
+    [self.view addSubview:self.bgImageView];
+    [self.view sendSubviewToBack:self.bgImageView];
 }
 
 - (void)setStyle {
@@ -33,6 +37,18 @@
     self.loginBtn.layer.borderWidth = 1;
     self.loginBtn.layer.cornerRadius = 5;
 }
+
+#pragma mark 背景图片
+- (UIImageView *)bgImageView{
+    if (!_bgImageView) {
+        //设置背景
+        _bgImageView = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        _bgImageView.image = [FileHelper imageNamed:@"message_bg.jpeg"];
+        _bgImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    return _bgImageView;
+}
+
 - (IBAction)loginBtnOnClick:(id)sender {
     NSString *username = self.userName.text;
     NSString *password = self.password.text;
@@ -77,6 +93,7 @@
  */
 - (void)conversation:(AVIMConversation *)conversation didReceiveTypedMessage:(AVIMTypedMessage *)message {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"First" object:message];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"group" object:message];
 
     [gMessageList addObject:message];
 }

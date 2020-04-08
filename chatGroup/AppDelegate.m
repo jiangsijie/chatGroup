@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UsersListViewController.h"
-
+#import "Group.h"
 #define APP_ID @"dWNLhmf8CVlqChrGepvqp5Cw-gzGzoHsz"
 #define APP_KEY @"8AnI2TacgxCFohhMwv0AGnOw"
 #define SERVER_URL @"https://dwnlhmf8.lc-cn-n1-shared.com"
@@ -21,6 +21,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Group registerSubclass];
     [AVOSCloud setApplicationId:APP_ID
                       clientKey:APP_KEY
                 serverURLString:SERVER_URL];

@@ -9,6 +9,9 @@
 #import "UsersListViewController.h"
 #import "UserTableViewCell.h"
 #import "ConversationViewController.h"
+#import "Group.h"
+#import "ChatViewController.h"
+#import "FileHelper.h"
 
 extern AVIMClient *gAVIMCient;
 extern BOOL loginSuccessed;
@@ -17,10 +20,21 @@ extern BOOL loginSuccessed;
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
 @property (strong, nonatomic) NSArray *usersList;
 @property (strong, nonatomic) AVUser *talkToUser;
-
+@property (strong, nonatomic) NSArray *groupList;
+@property (assign, nonatomic) BOOL isClickGroup;
+@property (assign, nonatomic) BOOL isClickCreate;
+@property (strong, nonatomic) Group *currentSelectGroup;
 @end
 
 @implementation UsersListViewController
+
+- (IBAction)createNewGroup:(id)sender {
+    self.isClickCreate = true;
+    self.hidesBottomBarWhenPushed = YES;
+    [self performSegueWithIdentifier:@"enterCreateGroupSegue" sender:self];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,12 +43,27 @@ extern BOOL loginSuccessed;
     self.userTableView.dataSource = self;
 
     self.usersList = [NSArray array];
-
+    self.groupList = [NSArray array];
     AVQuery *query = [AVQuery queryWithClassName:@"_User"];
     [query selectKeys:@[@"objectId", @"username"]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
         self.usersList = users;
         [self refreshData];
+    }];
+    
+    AVQuery *groupQuery = [Group query];
+    [groupQuery orderByDescending:@"createdAt"];
+    [groupQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSMutableArray *groupsContainCurrentUser = [NSMutableArray array];
+            for (Group *group in objects) {
+                if ([self checkCurrentUserIsMember:group]) {
+                    [groupsContainCurrentUser addObject:group];
+                }
+            }
+            self.groupList = groupsContainCurrentUser;
+            [self refreshData];
+        }
     }];
 }
 
@@ -43,12 +72,23 @@ extern BOOL loginSuccessed;
         UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
         AVUser *user = [self.usersList objectAtIndex:indexPath.row];
         cell.usernameLabel.text = user.username;
+        cell.userHeader.image = [FileHelper imageNamed:@"headImage.jpeg"];
         return cell;
     } else {
+        Group *group = [self.groupList objectAtIndex:indexPath.row];
         UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell"];
-        cell.usernameLabel.text = @"新建群聊";
+        cell.usernameLabel.text = group.groupName;
+        cell.userHeader.image = [FileHelper imageNamed:@"sharemore_friendcard.png"];
         return cell;
     }
+}
+
+-(BOOL) checkCurrentUserIsMember:(Group *)group{
+    AVUser *currentUser = [AVUser currentUser];
+    if ([group.members containsObject:currentUser.objectId]) {
+        return true;
+    }
+    return false;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -63,7 +103,7 @@ extern BOOL loginSuccessed;
     if(section == 0) {
         return self.usersList.count;
     }
-    return 1;
+    return self.groupList.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -72,17 +112,21 @@ extern BOOL loginSuccessed;
     }
     
     if (indexPath.section == 0) {
+         self.isClickGroup = false;
+         self.isClickCreate = false;
          self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
          self.hidesBottomBarWhenPushed = YES;
          [self performSegueWithIdentifier:@"enterConversationSegue" sender:self];
          self.hidesBottomBarWhenPushed = NO;
     } else {
-         self.talkToUser = [self.usersList objectAtIndex:indexPath.row];
-         self.hidesBottomBarWhenPushed = YES;
-         [self performSegueWithIdentifier:@"enterCreateGroupSegue" sender:self];
-         self.hidesBottomBarWhenPushed = NO;
+        self.isClickGroup = true;
+        self.isClickCreate = false;
+        Group *group = [self.groupList objectAtIndex:indexPath.row];
+        self.currentSelectGroup = group;
+        self.hidesBottomBarWhenPushed = YES;
+        [self performSegueWithIdentifier:@"enterGroupChatSegue" sender:self];
+        self.hidesBottomBarWhenPushed = NO;
     }
- 
 }
 
 /**
@@ -93,8 +137,17 @@ extern BOOL loginSuccessed;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    ConversationViewController *destination = segue.destinationViewController;
-    destination.talkToUser = self.talkToUser;
+    if (self.isClickGroup && !self.isClickCreate) {
+        ChatViewController *destination = segue.destinationViewController;
+        destination.conversationId = self.currentSelectGroup.conversationId;
+        destination.groupName = self.currentSelectGroup.groupName;
+        destination.groupMember = self.currentSelectGroup.members;
+    }
+    
+    if (!self.isClickGroup && !self.isClickCreate) {
+        ConversationViewController *destination = segue.destinationViewController;
+        destination.talkToUser = self.talkToUser;
+    }
 }
 
 @end

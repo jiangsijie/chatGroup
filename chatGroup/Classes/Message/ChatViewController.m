@@ -17,6 +17,7 @@
 
 @interface ChatViewController ()<MessageInputViewDelegate,
 ChatMessageCellDelegate,
+AVIMClientDelegate,
 UITableViewDelegate,
 UITableViewDataSource>
 {
@@ -53,15 +54,28 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     
     self.currentUser = [AVUser currentUser];
     self.client = [[AVIMClient alloc] initWithUser:self.currentUser];
-    
+//s
     self.view.backgroundColor = kInPutViewColor;
     self.dataSource = [[NSMutableArray alloc] init];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationGroup:) name:@"group" object:nil];
     
     [self config];
     // Do any additional setup after loading the view.
 }
 
+- (void) notificationGroup:(NSNotification *)notification {
+    AVIMTypedMessage *message = [notification object];
+    NSLog(@"%hhd", message.mediaType);
+    NSLog(@"%hhd", message.ioType);
+    if (message.mediaType == kAVIMMessageMediaTypeText && message.ioType == AVIMMessageIOTypeIn) {
+        Message *msg = [MessageHelper addPublicParameters];
+        msg.messageType = SHMessageBodyType_text;
+        msg.bubbleMessageType = SHBubbleMessageType_Receiving;
+        msg.text = message.text;
+        [self addChatMessageWithMessage:msg isBottom:YES];
+    }
+    NSLog(@"111111%@", message.text);
+}
 
 -(void) config{
     [self.view addSubview:self.chatInputView];
@@ -119,11 +133,11 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
 -(NSArray <MessageFrame *> *)loadMessageDataWithNum:(NSUInteger)num isLoad:(BOOL)isLoad{
     NSMutableArray *temp = [[NSMutableArray alloc]init];
     NSMutableArray *loadTimeArr = [[NSMutableArray alloc]init];
-    
+
     for (int i = 0; i < num; i++) {
-        
+
         Message *message;
-        
+
         switch (arc4random()%8) {
             case 0:
                 message = [self getTextMessage];
@@ -132,44 +146,44 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
                 message = [self getTextMessage];
                 break;
         }
-        
+
         message.messageState = SHSendMessageType_Successed;
-        
+
         MessageFrame *messageFrame = [self dealDataWithMessage:message dateSoure:temp setTime:isLoad?loadTimeArr.lastObject:self.timeArr.lastObject];
-        
+
         if (messageFrame) {//做添加
-            
+
             if (messageFrame.showTime) {
-                
+
                 if (isLoad) {
                     [loadTimeArr addObject:message.sendTime];
                 }else{
                     [self.timeArr addObject:message.sendTime];
                 }
             }
-            
+
             [temp addObject:messageFrame];
         }
     }
-    
+
     if (loadTimeArr.count) {
         NSMutableIndexSet *indexes = [NSMutableIndexSet indexSetWithIndex:0];
         [indexes addIndex:0];
-        
+
         [self.timeArr insertObjects:loadTimeArr atIndexes:indexes];
     }
-    
+
     return temp;
 }
 
 #pragma mark 获取文本
 - (Message *)getTextMessage{
-    
+
     Message *message = [MessageHelper addPublicParameters];
-    
+
     message.messageType = SHMessageBodyType_text;
     message.text = @"GitHub：https://github.com/CCSH";
-    
+
     return message;
 }
 
@@ -218,7 +232,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     
     message.messageType = SHMessageBodyType_text;
     message.text = text;
-    
+    message.chatType = SHChatType_GroupChat;
     [self.client openWithCallback:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             AVIMConversationQuery *query = [self.client conversationQuery];
@@ -228,6 +242,8 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
                         NSLog(@"发送成功！");
                         //添加到聊天界面
                         [self addChatMessageWithMessage:message isBottom:YES];
+                    } else {
+                        NSLog(@"%@", error);
                     }
                 }];
             }];
@@ -774,7 +790,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
     if (!_unreadBtn) {
         _unreadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _unreadBtn.frame = CGRectMake(kSHWidth - 135, 20 + 44 + kSHTopSafe, 135, 35);
-        
+
         _unreadBtn.titleLabel.font = [UIFont systemFontOfSize:16];
         [_unreadBtn setTitleColor:[UIColor redColor] forState:0];
         [_unreadBtn setBackgroundImage:[FileHelper imageNamed:@"unread_bg.png"] forState:0];
@@ -782,7 +798,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
         _unreadBtn.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self.view addSubview:_unreadBtn];
     }
-    
+
     return _unreadBtn;
 }
 
@@ -812,7 +828,7 @@ static NSString * const reuseIdentifier = @"ChatMessageCell";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    self.title = @"群聊";
+    self.title = self.groupName;
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

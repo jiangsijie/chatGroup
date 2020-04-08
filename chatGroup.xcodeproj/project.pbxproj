@@ -21,6 +21,7 @@
 		82A346B7242F432F00E648E3 /* MessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346B6242F432F00E648E3 /* MessageTextView.m */; };
 		82A346BB24306F5300E648E3 /* CreateChatGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346BA24306F5300E648E3 /* CreateChatGroupViewController.m */; };
 		82A346BE24307A1900E648E3 /* CreateCGCellViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346BD24307A1900E648E3 /* CreateCGCellViewTableViewCell.m */; };
+		82A346C12433167900E648E3 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A346C02433167900E648E3 /* Group.m */; };
 		DCB0DE8E3CADD85C2FDC5457 /* Pods_chatGroup_chatGroupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819D55DC311390AF513B02B3 /* Pods_chatGroup_chatGroupUITests.framework */; };
 		E10142C679E6BC7602721CF9 /* Pods_chatGroupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F2B30D1521231CEABFBADB /* Pods_chatGroupTests.framework */; };
 		E96A91D758E82F2B04FC2CA2 /* Pods_chatGroup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 366C9045298D399E4FCE9829 /* Pods_chatGroup.framework */; };
@@ -94,6 +95,8 @@
 		82A346BA24306F5300E648E3 /* CreateChatGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateChatGroupViewController.m; sourceTree = "<group>"; };
 		82A346BC24307A1900E648E3 /* CreateCGCellViewTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateCGCellViewTableViewCell.h; sourceTree = "<group>"; };
 		82A346BD24307A1900E648E3 /* CreateCGCellViewTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateCGCellViewTableViewCell.m; sourceTree = "<group>"; };
+		82A346BF2433167900E648E3 /* Group.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		82A346C02433167900E648E3 /* Group.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		A01B3905DCAA19665BB2F395 /* Pods-chatGroup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatGroup.release.xcconfig"; path = "Target Support Files/Pods-chatGroup/Pods-chatGroup.release.xcconfig"; sourceTree = "<group>"; };
 		AE74613AE38263B989B1A7F1 /* Pods-chatGroup-chatGroupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatGroup-chatGroupUITests.debug.xcconfig"; path = "Target Support Files/Pods-chatGroup-chatGroupUITests/Pods-chatGroup-chatGroupUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D22C2398E7BB4394000B33BC /* Pods-chatGroup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-chatGroup.debug.xcconfig"; path = "Target Support Files/Pods-chatGroup/Pods-chatGroup.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				82A3469A242EE62500E648E3 /* Message.m */,
 				82A3469C242EE68E00E648E3 /* MessageType.h */,
 				82A3469D242EE68E00E648E3 /* MessageType.m */,
+				82A346BF2433167900E648E3 /* Group.h */,
+				82A346C02433167900E648E3 /* Group.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 				F6F0A3EE2428B58B00E1DA1D /* AppDelegate.m in Sources */,
 				82A346A3242EEC3C00E648E3 /* ActivityIndicatorView.m in Sources */,
 				F6F0A43A2429F6DA00E1DA1D /* UsersListViewController.m in Sources */,
+				82A346C12433167900E648E3 /* Group.m in Sources */,
 				F6F0A451242B4B7400E1DA1D /* ConversationTableViewCell.m in Sources */,
 				F6F0A3FF2428B58E00E1DA1D /* main.m in Sources */,
 				F6F0A442242A101900E1DA1D /* MessageViewController.m in Sources */,

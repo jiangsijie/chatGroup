@@ -10,6 +10,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudIM/AVOSCloudIM.h>
 #import "ChatViewController.h"
+#import "Group.h"
 @interface CreateChatGroupViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *userTableView;
 @property (strong, nonatomic) NSArray *usersList;
@@ -19,6 +20,8 @@
 @property (strong, nonatomic) AVUser *talkToUser;
 @property (assign, nonatomic) BOOL loginFailed;
 @property (strong, nonatomic) NSString *conversationId;
+@property (strong, nonatomic) NSString *groupName;
+
 @end
 
 @implementation CreateChatGroupViewController
@@ -89,18 +92,45 @@
 }
 
 - (IBAction)createChatGroupAction:(id)sender {
-    self.hidesBottomBarWhenPushed = true;
-    [self createGroupInCloud];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"请输入群聊名称" preferredStyle:UIAlertControllerStyleAlert];
+
+      [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+
+      [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+          UITextField *groupNameTextField = alertController.textFields.firstObject;
+          self.hidesBottomBarWhenPushed = true;
+          self.groupName = groupNameTextField.text;
+          [self createGroupInCloud:groupNameTextField.text];
+      }]];
+      alertController.actions.lastObject.enabled = false;
+      [alertController addTextFieldWithConfigurationHandler:^(UITextField*_NonnulltextField) {
+          _NonnulltextField.placeholder=@"请输入群聊名称";
+          [_NonnulltextField addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+      }];
+
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
--(void) createGroupInCloud {
+-(void) textFieldChanged:(UITextField *)textFiled {
+    UIAlertController *alertController = (UIAlertController *)self.presentedViewController;
+        //拿到doneAction按钮
+    UIAlertAction * doneAction = alertController.actions.lastObject;
+        //判断语句
+        if (textFiled.text.length >= 3) {
+            doneAction.enabled = true;
+        } else {
+            doneAction.enabled = false;
+        }
+}
+-(void) createGroupInCloud:(NSString *)groupName {
+    
     [self.client openWithCallback:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSArray *selectedMemberIds = [self getIdsFromUserObjectList:self.selectUserIndexList];
-            [self.client createConversationWithName:@"群聊" clientIds:selectedMemberIds callback:^(AVIMConversation *conversation, NSError *error) {
+            [self.client createConversationWithName:groupName clientIds:selectedMemberIds callback:^(AVIMConversation *conversation, NSError *error) {
                 if (!error) {
                     self.conversationId = conversation.conversationId;
-                    [self performSegueWithIdentifier:@"enterGroupChatSegue" sender:self];
+                    [self saveConversationAndGroupInfo:conversation.conversationId group:groupName];
                     NSLog(@"创建成功！");
                 } else {
                     NSLog(@"%@", error);
@@ -113,11 +143,27 @@
     }];
 }
 
+-(void)saveConversationAndGroupInfo:(NSString *)conversationId group:(NSString *) groupName{
+    Group *group = [Group object];
+    group.conversationId = conversationId;
+    group.groupName = groupName;
+    NSArray *members = [self getIdsFromUserObjectList:self.selectUserIndexList];
+    group.members = members;
+    [group saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self performSegueWithIdentifier:@"enterGroupChatSegue" sender:self];
+            NSLog(@"保存成功！");
+        } else {
+            NSLog(@"%@", error);
+        }
+    }];
+}
+
 -(NSArray *) getIdsFromUserObjectList:(NSMutableArray *)selectedUserIndexList {
     NSMutableArray *selectedMemberIds = [NSMutableArray array];
     for (NSIndexPath *indexPath in selectedUserIndexList) {
         AVUser *user = [self.usersList objectAtIndex:indexPath.row];
-        [selectedMemberIds addObject:user.username];
+        [selectedMemberIds addObject:user.objectId];
     }
     return  selectedMemberIds;
 }
@@ -132,6 +178,7 @@
     }
     chatviewcontroller.groupMember = selectedMember;
     chatviewcontroller.conversationId = self.conversationId;
+    chatviewcontroller.groupName = self.groupName;
 }
 /*
  #pragma mark - Navigation

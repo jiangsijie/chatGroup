@@ -9,9 +9,10 @@
 #import "LoginOrSignupViewController.h"
 #import "FileHelper.h"
 
-@interface LoginOrSignupViewController ()<AVIMClientDelegate>
+@interface LoginOrSignupViewController ()<AVIMClientDelegate,UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userName;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+
 @property (weak, nonatomic) IBOutlet UIButton *signupBtn;
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (nonatomic, strong) UIImageView *bgImageView;
@@ -22,10 +23,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tipsImage.image = [FileHelper imageNamed:@"openeyes.png"];
     [self setStyle];
     gMessageList = [NSMutableArray arrayWithCapacity:8];
-    [self.view addSubview:self.bgImageView];
-    [self.view sendSubviewToBack:self.bgImageView];
+    self.userName.delegate = self;
+    self.password.delegate = self;
+//    [self.view addSubview:self.bgImageView];
+//    [self.view sendSubviewToBack:self.bgImageView];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if ([textField.placeholder  isEqual: @"用户名"]) {
+        self.tipsImage.image = [FileHelper imageNamed:@"openeyes.png"];
+    } else {
+        self.tipsImage.image = [FileHelper imageNamed:@"closeeyes.png"];
+    }
 }
 
 - (void)setStyle {

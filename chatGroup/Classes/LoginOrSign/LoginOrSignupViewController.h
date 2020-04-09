@@ -17,6 +17,7 @@ AVIMClient *gAVIMCient;
 BOOL loginSuccessed;
 
 @interface LoginOrSignupViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *tipsImage;
 
 @end
 

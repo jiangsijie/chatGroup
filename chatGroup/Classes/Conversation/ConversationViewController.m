@@ -17,6 +17,7 @@ extern BOOL loginSuccessed;
 @property (weak, nonatomic) IBOutlet UITableView *conversationTableView;
 @property (weak, nonatomic) IBOutlet UITextField *messageTextField;
 @property (strong, nonatomic) NSMutableArray* conversationList;
+@property (weak, nonatomic) IBOutlet UIButton *sendBtn;
 @end
 
 @implementation ConversationViewController
@@ -48,35 +49,32 @@ extern BOOL loginSuccessed;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.conversationList = [[NSMutableArray alloc] init];
-    
+
     [self initConversationList];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationFirst:) name:@"First" object:nil];
-    
-    
+
+
     self.tabBarController.tabBar.hidden = YES;
     self.navigationItem.title = self.talkToUser.username;
     self.conversationTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.conversationTableView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
+    self.sendBtn.layer.borderColor = [[UIColor lightGrayColor]CGColor];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ConversationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"conversationCell"];
     cell.backgroundColor = [UIColor colorWithWhite:0.95 alpha:1];
     AVIMTypedMessage *message = [self.conversationList objectAtIndex:indexPath.row];
-    cell.messageLabel.text = message.text;
+    UILabel *label = [[UILabel alloc] init];
     if(message.status == AVIMMessageStatusSent) {
-        //cell.textLabel.textAlignment = NSTextAlignmentRight;
-        cell.contentMode = UIViewContentModeRight;
+        label = cell.sendedMessageLabel;
     } else {
-        //.textLabel.textAlignment = NSTextAlignmentLeft;
+        label = cell.receivedMessageLabel;
     }
-    cell.messageLabel.backgroundColor = [UIColor whiteColor];
-    cell.messageLabel.layer.cornerRadius = 8;
-    cell.messageLabel.adjustsFontSizeToFitWidth =YES;
-    //cell.messageLabel.frame.origin = 100;
-//    cell.textLabel.layer.masksToBounds = YES;
+    label.text = message.text;
+    label.backgroundColor = [UIColor whiteColor];
     return cell;
 }
 
@@ -119,6 +117,6 @@ extern BOOL loginSuccessed;
     [self.conversationTableView reloadData];
 }
 - (IBAction)backBtnOnClick:(id)sender {
-    
+
 }
 @end
